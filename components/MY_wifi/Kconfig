@@ -1,0 +1,26 @@
+menu "Mars-WiFi Configuration"
+    choice MWF_MODE
+        prompt "Working mode of WiFi"
+        default MWF_MODE_STA
+        help
+            Please select the working mode of WiFi
+            AP - WiFi as AP
+            STA - WiFi working in Station mode
+        config MWF_MODE_AP
+            bool "AP"
+        config MWF_MODE_STA
+            bool "STA"
+    endchoice
+    config MWF_SSID
+        string "SSID"
+        default "3203"
+        help
+            If working in AP mode, this parameter is the SSID used to start the AP
+            If working in STA mode, this parameter is the SSID used to connect to the AP
+    config MWF_PASSWROD
+        string "Password"
+        default "32033203"
+        help 
+            If working in AP mode, this parameter is the password used to start the AP
+            If working in STA mode, this parameter is the password used to connect to the AP
+endmenu

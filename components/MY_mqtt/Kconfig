@@ -1,0 +1,42 @@
+menu "MQTT Configure"
+    config MQ_BROKER_URL
+        string "MQTT Broker URL"
+        default "mqtt://"
+        help
+          MQTT Broker URL
+    config MQ_BROKER_PORT
+        int "MQTT Broker Port"
+        default 1883
+        help
+          MQTT Broker Port
+    config MQ_BROKER_USER   
+        string "MQTT Broker User"
+        default ""
+        help
+          MQTT Broker User
+    config MQ_BROKER_PASSWD
+        string "MQTT Broker Password"
+        default ""
+        help
+          MQTT Broker Password
+    config MQ_CLIENTID
+        string "MQTT Client ID"
+        default ""
+        help
+          MQTT Client ID
+    config MQ_PRODUCTKEY
+        string "MQTT Product Key"
+        default ""
+        help
+          MQTT Product Key
+    config MQ_DEVICENAME
+        string "MQTT Device Name"
+        default ""
+        help
+          MQTT Device Name
+    config MQ_DEVICESECRET
+        string "MQTT Device Secret"
+        default ""
+        help
+          MQTT Device Secret
+endmenu
