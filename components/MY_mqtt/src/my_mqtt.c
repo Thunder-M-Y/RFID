@@ -16,10 +16,9 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     case MQTT_EVENT_CONNECTED: // 连接代理成功事件
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
         // MQTT 订阅主题为 /topic/test 的消息
-        msg_id = esp_mqtt_client_subscribe(client, TOPIC_GET, 0);
+        msg_id = esp_mqtt_client_subscribe(client, TOPIC_SUB, 0);
         ESP_LOGI(TAG, "发送订阅成功, msg_id=%d", msg_id);
-        msg_id = esp_mqtt_client_subscribe(client, TOPIC_REPLY, 0);
-        ESP_LOGI(TAG, "发送订阅成功, msg_id=%d", msg_id);
+
         break;
     case MQTT_EVENT_DISCONNECTED: // 连接断开事件
         ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
@@ -60,12 +59,31 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
 void esp_mqtt_start()
 {
     // 配置 MQTT URI
+    // esp_mqtt_client_config_t mqtt_cfg = {
+    //     .uri = MQTT_BROKER_URL,
+    //     .client_id = MQTT_CLIENTID,
+    //     .port = MQTT_BROKER_PORT,
+    //     .username = MQTT_USERNAME,
+    //     .password = MQTT_PASSWORD,
+    // };
+
+    // esp_mqtt_client_config_t mqtt_cfg = {
+    //     .host = "192.168.32.1",                  //MQTT服务器IP
+
+    //     //.client_id = "esp32",
+    //     .port=1883,                                //端口
+    //     .username = "admin",                       //用户名
+    //     .password = "123456",                      //密码
+    //
+    // };
     esp_mqtt_client_config_t mqtt_cfg = {
-        .uri = MQTT_BROKER_URL,
-        .client_id = MQTT_CLIENTID,
-        .port = MQTT_BROKER_PORT,
-        .username = MQTT_USERNAME,
-        .password = MQTT_PASSWORD,
+        // .event_handle = mqtt_event_handler,              //MQTT事件
+        //.uri =  "mqtt://broker.emqx.io",
+        //.host = "192.168.236.130", // MQTT服务器IP
+        .host = "192.168.172.116", // MQTT服务器IP
+        .port = 1883,              // 端口
+        .username = "admin",       // 用户名
+        .password = "123456",      // 密码
     };
     // 初始化 MQTT 客户端
     esp_mqtt_client_handle_t client = esp_mqtt_client_init(&mqtt_cfg);
@@ -76,5 +94,6 @@ void esp_mqtt_start()
     // 启动 MQTT 客户端
     esp_mqtt_client_start(client);
 
-    esp_mqtt_client_publish(client, TOPIC_POST, "{params:{CurrentHumidity:55,CurrentTemperature:34.5,PowerSwitch:0}}", 0, 1, 0);
+    // 发布-测试
+    // esp_mqtt_client_publish(client, TOPIC_POST, "{params:{Humidity:55,temperature:34,LED1Switch:0}}", 0, 1, 0);
 }
