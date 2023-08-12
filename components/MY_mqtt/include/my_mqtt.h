@@ -1,9 +1,9 @@
 #pragma once
 #include "esp_log.h"
 #include "mqtt_client.h"
+#include "driver/gpio.h"
 
-
-
+#define LED1_PIN GPIO_NUM_4
 
 // #define TOPIC_GET "/" CONFIG_MQ_PRODUCTKEY "/" CONFIG_MQ_DEVICENAME "/user/get"                  // 状态获取
 // #define TOPIC_update "/" CONFIG_MQ_PRODUCTKEY "/" CONFIG_MQ_DEVICENAME "/user/update" 
@@ -18,7 +18,6 @@
 #define MQTT_USERNAME CONFIG_MQ_BROKER_USER
 #define MQTT_PASSWORD CONFIG_MQ_BROKER_PASSWD
 #define MQTT_CLIENTID CONFIG_MQ_CLIENTID
-
 
 
 void esp_mqtt_start();

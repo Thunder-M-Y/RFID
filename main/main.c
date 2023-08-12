@@ -12,13 +12,12 @@
 
 
 
-
-
 void app_main(void)
 {
+   
     wifi_set_connected_callback(esp_mqtt_start);
     // 启动 WiFi
     wifi_sta_init(); // 初始化 Wi-Fi 并连接到热点
-    esp_rc522_start();
+    // esp_rc522_start();
     vTaskDelete(NULL);
 }
